@@ -1,1 +1,3 @@
+// switches to mydb
+
 use my_db
