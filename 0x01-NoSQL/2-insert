@@ -1,3 +1,2 @@
 // script
-
 db.school.insertOne({"name": "Holberton school"})
