@@ -33,8 +33,16 @@ def log_stats(mongo_collection):
     print("{} status check".format(status))
     print("IPs:")
     collection = mongo_collection.find()
-    for address in list(collection)[:10]:
-        print(f"\t{address['ip']}")
+    dictionary = {}
+    for address in list(collection):
+        if address["ip"] in dictionary:
+            dictionary[address["ip"]] += 1
+        else:
+            dictionary[address["ip"]] = 1
+    sorted_items = sorted(dictionary.items(),
+                          key=lambda item: item[1])[-10:][::-1]
+    for key, val in sorted_items:
+        print(f"\t{key}: {val}")
 
 
 if __name__ == "__main__":
